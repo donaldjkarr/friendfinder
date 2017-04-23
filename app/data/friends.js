@@ -72,31 +72,31 @@ $(document).ready(function() {
 			score.push(question10);
 
 			//add up the numbers in the score array
-			console.log(
+			//console.log(
 			  
-			    score.map( function(elt){ // assure the value can be converted into a number
-			      return /^\d+$/.test(elt) ? parseInt(elt) : 0; 
-			    })
-			    .reduce( function(a,b){ // sum all resulting numbers
-			      return a+b
-			    })
-			)
+			// var totalScore = score.map( function(elt){ // assure the value can be converted into a number
+			//       return /^\d+$/.test(elt) ? parseInt(elt) : 0; 
+			//     })
+			//     .reduce( function(a,b){ // sum all resulting numbers
+			//       return a+b
+			//     });
+			//)
 
 			var userProfile = {
-				newName: name,
-				newPhoto: photo,
-				newScore: score
+				name: name,
+				photo: photo,
+				score: score
 			};
 
 			console.log(userProfile);
 
-			$.post("api/friends", userProfile function(data) {
-				
-			})
+			$.post("api/friends", userProfile, function(data) {
+				$("#matchName").text(data.userName);
+				$("#matchImg").attr("src", data.userPhoto);
+				$("#resultsModal").modal("show");
+			});
 
-	})
-
-
+	});
 
 });
 

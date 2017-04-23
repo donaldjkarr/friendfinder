@@ -2,7 +2,11 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
 
+var apiRoutes = require("./app/routing/apiRoutes.js");
+
 var htmlRoutes = require("./app/routing/htmlRoutes.js");
+
+
 
 // Sets up the Express App
 // =============================================================
@@ -19,7 +23,11 @@ app.use(bodyParser.json({
  type: "application/vnd.api+json"
 }));
 
+
+app.use(express.static("app"));
+
 htmlRoutes(app);
+apiRoutes(app);
 
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
